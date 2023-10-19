@@ -1,13 +1,8 @@
 import './style.scss';
 
 const card = document.querySelector('.card')! as HTMLDivElement;
-const back = card.querySelector('.card-back')! as HTMLDivElement;
-const mid = card.querySelector('.card-mid')! as HTMLDivElement;
 const highlightFront = card.querySelector('.highlight-line.front')! as HTMLDivElement;
 const highlightBack = card.querySelector('.highlight-line.back')! as HTMLDivElement;
-
-mid.style.transform = `translateZ(-2px) scale(1.005)`;
-back.style.transform = `translateZ(-4px) scale(1.001) rotateY(180deg)`;
 
 const cardWidth = card.clientWidth;
 const maxRotateX = 60;

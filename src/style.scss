@@ -32,8 +32,9 @@ body {
   height: 100vh;
   align-items: center;
   justify-content: center;
-  perspective: 1000px;
   background: var(--container-bg);
+
+  perspective: 1000px;
 }
 
 .card {
@@ -42,9 +43,9 @@ body {
   height: var(--card-height);
   border-radius: var(--card-radius);
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-  perspective: 1000px;
-  transform-style: preserve-3d;
+
   will-change: transform;
+  transform-style: preserve-3d;
 }
 
 .card-front {
@@ -55,9 +56,24 @@ body {
   z-index: 20;
   overflow: hidden;
   border-radius: var(--card-radius);
-  perspective: 1000px;
   -webkit-backface-visibility: hidden; /* Safari */
   backface-visibility: hidden;
+  will-change: transform;
+}
+
+.card-mid {
+  position: absolute;
+  width: calc(100% - 2px);
+  height: calc(100% - 2px);
+  left: 0;
+  top: 0;
+
+  background: var(--card-mid-bg);
+  border-radius: var(--card-radius);
+  border: 1px solid var(--card-mid-border);
+
+  transform: translateZ(-2px) scale(1.005);
+
   will-change: transform;
 }
 
@@ -65,14 +81,18 @@ body {
   position: absolute;
   width: 100%;
   height: 100%;
-  background: var(--card-back-bg);
   z-index: 10;
-  transform: rotateY(180deg);
+  overflow: hidden;
+
+  background: var(--card-back-bg);
   border-radius: var(--card-radius);
-  perspective: 1000px;
+
   -webkit-backface-visibility: hidden; /* Safari */
   backface-visibility: hidden;
-  overflow: hidden;
+  transform: translateZ(-4px) scale(1.001) rotateY(180deg);
+
+  will-change: transform;
+
   .card-line {
     position: absolute;
     top: 25px;
@@ -81,26 +101,16 @@ body {
     right: 0;
     background: var(--card-line-bg);
   }
-  will-change: transform;
-}
-
-.card-mid {
-  position: absolute;
-  width: calc(100% - 1px);
-  height: calc(100% - 1px);
-  background: var(--card-mid-bg);
-  border-radius: var(--card-radius);
-  border: 1px solid var(--card-mid-border);
-  will-change: transform;
 }
 
 .highlight-line {
   position: absolute;
-  z-index: 100;
   left: calc(50% - 150px);
   top: -500px;
   height: 1280px;
   width: 300px;
+  z-index: 100;
+
   background-color: rgba(255, 255, 255, var(--highlighter-opacity));
   filter: blur(var(--highlighter-blur));
   will-change: transform;
@@ -114,14 +124,14 @@ body {
 
   font-weight: bold;
   user-select: none;
-
+  line-height: 0.9;
   z-index: 30;
+
   background-color: var(--card-text-color);
   color: transparent;
   text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.1);
   -webkit-background-clip: text;
   background-clip: text;
-  line-height: 0.9;
 
   .kaspi {
     font-size: 19px;
@@ -189,9 +199,11 @@ body {
   width: 60px;
   height: 43px;
   z-index: 40;
+
   border-radius: var(--card-chip-radius);
   background: var(--card-chip-bg);
   border: 1px solid var(--card-chip-border);
+
   &:before {
     content: '';
     position: absolute;
@@ -200,8 +212,10 @@ body {
     height: 20px;
     left: 0;
     top: 10px;
+
     border-top: 1px solid var(--card-chip-border);
     border-bottom: 1px solid var(--card-chip-border);
+
     z-index: 10;
   }
   &:after {
@@ -212,9 +226,11 @@ body {
     height: 35px;
     left: 18px;
     top: 3px;
+
     border: 1px solid var(--card-chip-border);
     border-radius: 4px;
     background: var(--card-chip-bg);
+
     z-index: 15;
   }
 }
