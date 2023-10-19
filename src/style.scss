@@ -1,0 +1,220 @@
+:root {
+  --container-bg: #222222;
+
+  --card-width: 446px;
+  --card-height: 280px;
+
+  --card-front-bg: #AE9664;
+  --card-back-bg: #AE9664;
+  --card-mid-bg: #706147;
+  --card-mid-border: #7c6c54;
+  --card-line-bg: black;
+  --card-radius: 16px;
+
+  --card-chip-bg: #ada298;
+  --card-chip-border: rgba(0,0,0,0.2);
+  --card-chip-radius: 8px;
+
+  --highlighter-blur: 15px;
+  --highlighter-opacity: 0.1;
+
+  --card-text-color: #957849;
+  --card-valid-color: white;
+}
+
+body {
+  margin: 0;
+}
+
+.container {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+  perspective: 1000px;
+  background: var(--container-bg);
+}
+
+.card {
+  position: relative;
+  width: var(--card-width);
+  height: var(--card-height);
+  border-radius: var(--card-radius);
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  perspective: 1000px;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.card-front {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: var(--card-front-bg);
+  z-index: 20;
+  overflow: hidden;
+  border-radius: var(--card-radius);
+  perspective: 1000px;
+  -webkit-backface-visibility: hidden; /* Safari */
+  backface-visibility: hidden;
+  will-change: transform;
+}
+
+.card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: var(--card-back-bg);
+  z-index: 10;
+  transform: rotateY(180deg);
+  border-radius: var(--card-radius);
+  perspective: 1000px;
+  -webkit-backface-visibility: hidden; /* Safari */
+  backface-visibility: hidden;
+  overflow: hidden;
+  .card-line {
+    position: absolute;
+    top: 25px;
+    height: 68px;
+    left: 0;
+    right: 0;
+    background: var(--card-line-bg);
+  }
+  will-change: transform;
+}
+
+.card-mid {
+  position: absolute;
+  width: calc(100% - 1px);
+  height: calc(100% - 1px);
+  background: var(--card-mid-bg);
+  border-radius: var(--card-radius);
+  border: 1px solid var(--card-mid-border);
+  will-change: transform;
+}
+
+.highlight-line {
+  position: absolute;
+  z-index: 100;
+  left: calc(50% - 150px);
+  top: -500px;
+  height: 1280px;
+  width: 300px;
+  background-color: rgba(255, 255, 255, var(--highlighter-opacity));
+  filter: blur(var(--highlighter-blur));
+  will-change: transform;
+}
+
+.kaspi-logo {
+  font-family: 'Roboto', sans-serif;
+  position: absolute;
+  right: 15px;
+  top: 20px;
+
+  font-weight: bold;
+  user-select: none;
+
+  z-index: 30;
+  background-color: var(--card-text-color);
+  color: transparent;
+  text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.1);
+  -webkit-background-clip: text;
+  background-clip: text;
+  line-height: 0.9;
+
+  .kaspi {
+    font-size: 19px;
+    margin-left: 1px;
+  }
+
+  .gold {
+    font-size: 34px;
+  }
+}
+
+.card-number {
+  position: absolute;
+  font-size: 30px;
+  letter-spacing: 1px;
+  word-spacing: 4px;
+  color: var(--card-text-color);
+  bottom: 30%;
+  left: 15%;
+  user-select: none;
+  font-family: 'Kredit', sans-serif;
+}
+
+.card-holder {
+  position: absolute;
+  font-size: 20px;
+  letter-spacing: 2px;
+  color: var(--card-text-color);
+  bottom: 30px;
+  left: 15%;
+  user-select: none;
+  font-family: 'Kredit', sans-serif;
+}
+
+.card-valid {
+  position: absolute;
+  display: flex;
+  bottom: 57px;
+  left: 15%;
+
+  .card-valid-label {
+    font-family: 'Roboto', sans-serif;
+    color: var(--card-valid-color);
+    font-size: 8px;
+    line-height:8px;
+    text-align: justify;
+    margin-right: 4px;
+    opacity: 0.5;
+  }
+
+  .card-valid-value {
+    color: var(--card-text-color);
+    user-select: none;
+    font-family: 'Kredit', sans-serif;
+    font-size: 18px;
+  }
+}
+
+
+
+.card-chip {
+  position: absolute;
+  top: 30%;
+  left: 13%;
+  width: 60px;
+  height: 43px;
+  z-index: 40;
+  border-radius: var(--card-chip-radius);
+  background: var(--card-chip-bg);
+  border: 1px solid var(--card-chip-border);
+  &:before {
+    content: '';
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 20px;
+    left: 0;
+    top: 10px;
+    border-top: 1px solid var(--card-chip-border);
+    border-bottom: 1px solid var(--card-chip-border);
+    z-index: 10;
+  }
+  &:after {
+    content: '';
+    position: absolute;
+    display: block;
+    width: 24px;
+    height: 35px;
+    left: 18px;
+    top: 3px;
+    border: 1px solid var(--card-chip-border);
+    border-radius: 4px;
+    background: var(--card-chip-bg);
+    z-index: 15;
+  }
+}
