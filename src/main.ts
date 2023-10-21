@@ -3,6 +3,8 @@ import './style.scss';
 const card = document.querySelector('.card')! as HTMLDivElement;
 const highlightFront = card.querySelector('.highlight-line.front')! as HTMLDivElement;
 const highlightBack = card.querySelector('.highlight-line.back')! as HTMLDivElement;
+const dimmerFront = card.querySelector('.dimmer.front')! as HTMLDivElement;
+const dimmerBack = card.querySelector('.dimmer.back')! as HTMLDivElement;
 
 const cardWidth = card.clientWidth;
 const maxRotateX = 60;
@@ -50,13 +52,16 @@ function animate() {
         translateX(${-highlighterOffset}px)
     `;
 
-    highlightFront.style.opacity = `${1 - yMultiplier}`;
-    highlightBack.style.opacity = `${1 - yMultiplier}`;
+    highlightFront.style.opacity = `${0.5 - yMultiplier}`;
+    highlightBack.style.opacity = `${0.5 - yMultiplier}`;
 
     card.style.transform = `
         rotateX(${-rotateX}deg)
         rotateY(${rotateY}deg)
     `;
+
+    dimmerFront.style.opacity = `${yMultiplier - 0.2}`;
+    dimmerBack.style.opacity = `${yMultiplier - 0.2}`;
 
     requestAnimationFrame(() => {
         animate();
